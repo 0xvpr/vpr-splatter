@@ -1,0 +1,18 @@
+# Generated files
+Module.symvers
+modules.order
+
+# Generated Objects
+*.ko
+*.cmd
+*.mod
+*.mod.c
+*.mod.o
+*.o
+*.so
+*.a
+*.exe
+*.out
+
+# Misc
+*.bak
