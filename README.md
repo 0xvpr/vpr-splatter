@@ -10,6 +10,9 @@
 </p>
 <br>
 
+## License
+https://www.gnu.org/licenses/gpl-3.0.txt
+
 ## Demonstration
 [ TODO ]
 
@@ -24,5 +27,3 @@ insmod splatter.ko
 make
 ```
 
-## License
-https://www.gnu.org/licenses/gpl-3.0.en.html#license-text

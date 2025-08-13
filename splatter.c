@@ -29,7 +29,8 @@ static struct nf_hook_ops g_nf_hook_op;
 #define CT_ALLOW_MARK 0x1
 
 static inline
-void set_ct_mark(struct nf_conn* ct, u32 mark)
+void
+set_ct_mark(struct nf_conn* ct, u32 mark)
 {
 #if defined(HAVE_NF_CT_SET_MARK) || defined(CONFIG_NF_CONNTRACK_MARK)
     /* Some kernels export nf_ct_set_mark(), but guarded by config;
@@ -45,13 +46,16 @@ void set_ct_mark(struct nf_conn* ct, u32 mark)
 #endif
 }
 
-static inline bool tcp_skb(const struct sk_buff* skb)
+static inline
+bool
+tcp_skb(const struct sk_buff* skb)
 {
     return skb && ip_hdr(skb) && ip_hdr(skb)->protocol == IPPROTO_TCP;
 }
 
 static inline
-bool socket_root_root(const struct sock *sk)
+bool
+socket_root_root(const struct sock *sk)
 {
     /**
      * UID: available on struct sock.
@@ -83,11 +87,9 @@ bool socket_root_root(const struct sock *sk)
 
 static
 unsigned int
-nf_ipv4_hook_func(
-    void*                       priv,
-    struct sk_buff*             skb,
-    const struct nf_hook_state* state
-)
+nf_ipv4_hook_func( void*                       priv,
+                   struct sk_buff*             skb,
+                   const struct nf_hook_state* state )
 {
     (void)priv;
     (void)state;
@@ -138,7 +140,6 @@ nf_ipv4_hook_func(
         }
         else /* New conn with no skb->sk? Play it safe: drop. */
         {
-            
             return NF_DROP;
         }
     }
@@ -166,7 +167,7 @@ static int __init _module_entry(void)
 static void __exit _module_exit(void)
 {
     nf_unregister_net_hook(&init_net, &g_nf_hook_op);
-    pr_info("splatter: Shutdown.\n");
+    pr_info("VPR Splatter: Shutdown.\n");
 }
 
 module_init(_module_entry);
